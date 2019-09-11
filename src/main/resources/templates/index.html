@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>IOT</title>
+</head>
+<link rel="stylesheet" th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.css}" />
+<script th:src="@{/webjars/jquery/3.0.0/jquery.js}"></script>
+<script th:src="@{/webjars/bootstrap/4.3.1/js/bootstrap.js}"></script>
+<body>
+    <form th:action="@{/getIpPort}">
+        <div class="form-group">
+            <label for="IP">IP</label>
+            <input type="text" name="ip" class="form-control" id="IP" placeholder="Enter IP">
+        </div>
+        <div class="form-group">
+            <label for="Port">Password</label>
+            <input type="text" name="port" class="form-control" id="Port" placeholder="Port">
+        </div>
+        <button type="submit" class="btn btn-primary">确定</button>
+    </form>
+
+</body>
+</html>
