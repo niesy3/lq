@@ -36,4 +36,9 @@ public class AppController {
         model.addAttribute("device",device);
         return "device";
     }
+    @RequestMapping("switch")
+    public String switchChange(boolean on) {
+    	device.setOn(on);
+    	return "redirect:send";
+    }
 }

@@ -12,7 +12,7 @@
     <div class="text-center">
         <p>向<span th:text="${device.ip}+':'+${device.port}"/>发送消息</p>
         <div class="custom-control custom-switch">
-            <input type="checkbox" class="custom-control-input" id="customSwitch1">
+            <input type="checkbox" th:checked="${device.on}" class="custom-control-input" id="customSwitch1">
             <label class="custom-control-label" for="customSwitch1">开关</label>
         </div>
         <p></p>
@@ -21,5 +21,14 @@
             <button type="button" class="btn btn-secondary btn-sm">按钮2</button>
         </p>
     </div>
+    <script type="text/javascript">
+    $('#customSwitch1').click(function(){
+    	$.ajax({
+    		type:"get",
+    		url:"/switch",
+    		data:{on:$("#customSwitch1").prop("checked")}
+    	});
+    }); 
+    </script>
 </body>
 </html>
