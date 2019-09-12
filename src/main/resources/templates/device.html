@@ -2,23 +2,24 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
     <title>IOT</title>
 </head>
 <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.css}" />
 <script th:src="@{/webjars/jquery/3.0.0/jquery.js}"></script>
 <script th:src="@{/webjars/bootstrap/4.3.1/js/bootstrap.js}"></script>
 <body>
-    <p>向<span th:text="${device.ip}+':'+${device.port}" />发送消息</p>
-    <div class="custom-control custom-switch">
-        <input type="checkbox" class="custom-control-input" id="customSwitch1">
-        <label class="custom-control-label" for="customSwitch1">开关</label>
+    <div class="text-center">
+        <p>向<span th:text="${device.ip}+':'+${device.port}"/>发送消息</p>
+        <div class="custom-control custom-switch">
+            <input type="checkbox" class="custom-control-input" id="customSwitch1">
+            <label class="custom-control-label" for="customSwitch1">开关</label>
+        </div>
+        <p></p>
+        <p>
+            <button type="button" class="btn btn-primary btn-sm">按钮1</button>
+            <button type="button" class="btn btn-secondary btn-sm">按钮2</button>
+        </p>
     </div>
-    <p></p>
-    <p>
-        <button type="button" class="btn btn-primary btn-sm">Small button</button>
-        <button type="button" class="btn btn-secondary btn-sm">Small button</button>
-    </p>
-
-
 </body>
 </html>

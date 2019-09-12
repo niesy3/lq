@@ -1,5 +1,6 @@
 package com.iot.demo.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.iot.demo.entity.Device;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,16 +23,17 @@ public class AppController {
         return "device";
     }
     @RequestMapping("send")
-    public String send(String msg) throws IOException {
+    public String send(Model model) throws IOException {
         Socket socket = new Socket(device.getIp(), device.getPort());
         OutputStream out = socket.getOutputStream();
+        String json = JSONObject.toJSONString(device);
         try{
-            out.write(msg.getBytes());
+            out.write(json.getBytes());
         } finally {
             out.close();
             socket.close();
         }
-
-        return "second";
+        model.addAttribute("device",device);
+        return "device";
     }
 }
