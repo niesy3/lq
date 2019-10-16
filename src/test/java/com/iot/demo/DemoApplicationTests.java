@@ -17,7 +17,6 @@ public class DemoApplicationTests {
         Device device = new Device();
         device.setIp("local");
         device.setPort(123);
-        device.setOn(true);
         String s = JSONObject.toJSONString(device);
         System.out.println(s);
     }

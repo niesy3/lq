@@ -11,22 +11,33 @@
 <body>
     <div class="text-center">
         <p>向<span th:text="${device.ip}+':'+${device.port}"/>发送消息</p>
-        <div class="custom-control custom-switch">
-            <input type="checkbox" th:checked="${device.on}" class="custom-control-input" id="customSwitch1">
-            <label class="custom-control-label" for="customSwitch1">开关</label>
+        <div class="custom-control custom-switch" id="s1">
+            <input type="checkbox" th:checked="${device.switch1}" class="custom-control-input" id="switch1">
+            <label class="custom-control-label" for="switch1">开关1</label>
+        </div>
+        <div class="custom-control custom-switch" id="s2">
+            <input type="checkbox" th:checked="${device.switch2}" class="custom-control-input" id="switch2">
+            <label class="custom-control-label" for="switch2">开关2</label>
+        </div>
+        <div class="custom-control custom-switch" id="s3">
+            <input type="checkbox" th:checked="${device.switch3}" class="custom-control-input" id="switch3">
+            <label class="custom-control-label" for="switch3">开关3</label>
         </div>
         <p></p>
-        <p>
-            <button type="button" class="btn btn-primary btn-sm">按钮1</button>
-            <button type="button" class="btn btn-secondary btn-sm">按钮2</button>
-        </p>
+        <div>
+    		<span>温度：</span><span th:text="${device.num1}"></span><br/>
+    		<span>湿度：</span><span th:text="${device.num2}"></span><br/>
+    		<span>光敏电阻值：</span><span th:text="${device.num3}"></span><br/>
+   		</div>
     </div>
+    
     <script type="text/javascript">
-    $('#customSwitch1').click(function(){
+    $('.custom-control-input').click(function(){
     	$.ajax({
     		type:"get",
     		url:"/switch",
-    		data:{on:$("#customSwitch1").prop("checked")}
+    		data:{switches:$(this).attr("id"),
+    			  on:$(this).prop("checked")}
     	});
     }); 
     </script>
