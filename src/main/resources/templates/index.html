@@ -1,23 +1,62 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>IOT</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>IOT</title>
+<style>
+.container {
+	display: table;
+	height: 100%;
+}
+
+.row {
+	display: table-cell;
+	vertical-align: middle;
+}
+/* centered columns styles */
+.row-centered {
+	text-align: center;
+}
+
+.col-centered {
+	display: inline-block;
+	float: none;
+	text-align: left;
+	margin-right: -4px;
+}
+</style>
 </head>
-<link rel="stylesheet" th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.css}" />
+<link rel="stylesheet"
+	th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.css}" />
 <script th:src="@{/webjars/jquery/3.0.0/jquery.js}"></script>
 <script th:src="@{/webjars/bootstrap/4.3.1/js/bootstrap.js}"></script>
 <body>
-    <form th:action="@{/getIpPort}">
-        <div class="form-group">
-            <label for="IP">IP</label>
-            <input type="text" name="ip" class="form-control" id="IP" value="10.112.147.157">
-        </div>
-        <div class="form-group">
-            <label for="Port">Password</label>
-            <input type="text" name="port" class="form-control" id="Port" value="80">
-        </div>
-        <button type="submit" class="btn btn-primary">确定</button>
-    </form>
+	<div class="container">
+		<div class="row row-centered">
+			<div class="well col-md-6 col-centered">
+				<h2>绿墙</h2>
+				<form class="text-center" th:action="@{/getIpPort}">
+					<div class="input-group input-group-md">
+						<span class="input-group-addon" id="sizing-addon1"><i
+							class="glyphicon glyphicon-user" aria-hidden="true"></i></span> <input
+							type="text" class="form-control" id="ip" name="ip"
+							value="10.112.147.157"
+							placeholder="ip" />
+					</div>
+					<div class="input-group input-group-md">
+						<span class="input-group-addon" id="sizing-addon1"><i
+							class="glyphicon glyphicon-lock"></i></span> <input type="text"
+							class="form-control" id="port" name="port" value="80" placeholder="port" />
+					</div>
+					<br />
+					<button type="submit" class="btn btn-success btn-block">确定</button>
+				</form>
+			</div>
+		</div>
+	</div>
+
+
 </body>
 </html>
