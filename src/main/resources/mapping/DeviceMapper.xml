@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.iot.demo.mapper.DeviceMapper">
+
+     <resultMap id="BaseResultMap" type="com.iot.demo.entity.Device">
+        
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <id column="mac" jdbcType="INTEGER" property="mac" />
+        <result column="switch1" jdbcType="VARCHAR" property="switch1" />
+        <result column="switch2" jdbcType="VARCHAR" property="switch2" />
+        <result column="switch3" jdbcType="VARCHAR" property="switch3" />
+<!--         <result column="switch4" jdbcType="VARCHAR" property="switch4" />
+        <result column="switch5" jdbcType="VARCHAR" property="switch5" /> -->
+        <result column="num1" jdbcType="VARCHAR" property="num1" />
+        <result column="num2" jdbcType="VARCHAR" property="num2" />
+        <result column="num3" jdbcType="VARCHAR" property="num3" />
+		<result column="port" jdbcType="INTEGER" property="port" />
+		<result column="ip" jdbcType="VARCHAR" property="ip" />
+        
+    </resultMap>
+ <!-- 数据报表 -->
+    <select id="Sel" resultType="com.iot.demo.entity.Device">
+        select * from greenwall where id = #{id}
+    </select>
+    <select id="prt" resultType="com.iot.demo.entity.Device">
+        select * from greenwall
+    </select>
+<!-- 可视化视图取10条温湿度光强数据 -->    
+    <select id="chart" resultType="com.iot.demo.entity.Device">
+        select num1,num2,num3,id,createtime from (select num1,num2,num3,id,createtime from chart where num1 is not null and num2 is not null and num3 is not null order by id desc limit 10)as a order by id
+    </select>
+ <!-- 增加 -->
+    <insert id="addDevice" parameterType="com.iot.demo.entity.Device">
+    insert into greenwall (id,switch1,switch2,switch3,num1,num2,num3,ip,port)values(#{id},#{switch1},#{switch2},#{switch3},#{num1},#{num2},#{num3},#{ip},#{port})
+ 	</insert>
+ <!-- 增加数据到chart -->
+    <insert id="addChart" parameterType="com.iot.demo.entity.Device">
+    insert into chart (id,switch1,switch2,switch3,num1,num2,num3,ip,port)values(#{id},#{switch1},#{switch2},#{switch3},#{num1},#{num2},#{num3},#{ip},#{port})
+      
+    </insert>
+</mapper>
+      <!-- insert into green (id, switch1, switch2, 
+      switch3, switch4, switch5, 
+      status, dept_id, create_by, 
+      create_time, last_update_by, last_update_time, 
+      del_flag)
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{salt,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, 
+      #{status,jdbcType=TINYINT}, #{deptId,jdbcType=BIGINT}, #{createBy,jdbcType=BIGINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{lastUpdateBy,jdbcType=BIGINT}, #{lastUpdateTime,jdbcType=TIMESTAMP}, 
+      #{delFlag,jdbcType=TINYINT}) -->
